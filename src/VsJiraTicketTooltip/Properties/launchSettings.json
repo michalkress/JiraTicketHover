@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "VsJiraTicketTooltip": {
+      "commandName": "Project",
+      "commandLineArgs": "/RootSuffix Exp"
+    },
+    "VSIX Experimental Instance": {
+      "commandName": "Executable",
+      "executablePath": "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/devenv.exe",
+      "commandLineArgs": "/RootSuffix Exp",
+      "workingDirectory": "$(SolutionDir)",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

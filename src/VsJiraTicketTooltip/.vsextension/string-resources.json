@@ -1,0 +1,16 @@
+{
+  "VsJiraTicketTooltip.Settings.Category.DisplayName": "Jira Ticket Tooltip",
+  "VsJiraTicketTooltip.Settings.Category.Description": "Settings for the Jira Ticket Tooltip extension.",
+  "VsJiraTicketTooltip.Settings.IsEnabled.DisplayName": "Enable Extension",
+  "VsJiraTicketTooltip.Settings.IsEnabled.Description": "When enabled, Jira ticket identifiers (e.g. ABC-123) in code comments will show a CodeLens with the ticket title.",
+  "VsJiraTicketTooltip.Settings.JiraInstanceUrl.DisplayName": "Jira Instance URL",
+  "VsJiraTicketTooltip.Settings.JiraInstanceUrl.Description": "The base URL of your Jira instance (e.g. https://mycompany.atlassian.net). Must be HTTPS.",
+  "VsJiraTicketTooltip.Settings.OAuthClientId.DisplayName": "OAuth2 Client ID",
+  "VsJiraTicketTooltip.Settings.OAuthClientId.Description": "The OAuth2 Client ID from your Atlassian Developer Console app.",
+  "VsJiraTicketTooltip.Settings.ActiveProvider.DisplayName": "Active Provider",
+  "VsJiraTicketTooltip.Settings.ActiveProvider.Description": "The ticket provider to use. Currently only Jira is supported.",
+  "VsJiraTicketTooltip.Settings.ActiveProvider.Jira": "Jira",
+  "VsJiraTicketTooltip.Settings.ProjectPrefixes.DisplayName": "Project Prefixes",
+  "VsJiraTicketTooltip.Settings.ProjectPrefixes.Description": "Comma-separated list of project prefixes to recognize (e.g. PROJ, PR, AMU). Leave empty to match all patterns [A-Z]+-[0-9]+.",
+  "VsJiraTicketTooltip.OpenJiraSetupCommand.DisplayName": "Configure Jira Connection..."
+}

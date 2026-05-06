@@ -1,0 +1,99 @@
+<DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:vs="http://schemas.microsoft.com/visualstudio/extensibility/2022/xaml"
+              xmlns:styles="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+              xmlns:colors="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0">
+
+  <Border Background="{DynamicResource {x:Static colors:EnvironmentColors.ToolWindowBackgroundBrushKey}}"
+          TextElement.Foreground="{DynamicResource {x:Static colors:EnvironmentColors.ToolWindowTextBrushKey}}"
+          Padding="16">
+    <StackPanel Orientation="Vertical" MaxWidth="480">
+
+      <!-- Tytuł -->
+      <TextBlock Text="Jira Ticket Tooltip — Connection Setup"
+                 FontSize="14"
+                 FontWeight="SemiBold"
+                 Margin="0,0,0,12" />
+
+      <!-- Instrukcja -->
+      <TextBlock TextWrapping="Wrap"
+                 Margin="0,0,0,4"
+                 Opacity="0.8"
+                 Text="1. Go to Atlassian Developer Console and create an OAuth 2.0 app:" />
+      <TextBlock Text="   https://developer.atlassian.com/console/myapps/"
+                 FontFamily="Consolas"
+                 Margin="0,0,0,8" />
+      <TextBlock TextWrapping="Wrap"
+                 Margin="0,0,0,4"
+                 Opacity="0.8"
+                 Text="2. In Authorization tab, add OAuth 2.0 (3LO) with callback URL:" />
+      <TextBlock Text="   http://localhost:9089/callback"
+                 FontFamily="Consolas"
+                 Margin="0,0,0,8" />
+      <TextBlock TextWrapping="Wrap"
+                 Margin="0,0,0,8"
+                 Opacity="0.8"
+                 Text="3. In Permissions tab, add Jira API → read:jira-work" />
+      <TextBlock TextWrapping="Wrap"
+                 Margin="0,0,0,8"
+                 Opacity="0.8"
+                 Text="4. Copy Client ID → paste in Tools → Options → Jira Ticket Tooltip" />
+      <TextBlock TextWrapping="Wrap"
+                 Margin="0,0,0,16"
+                 Opacity="0.8"
+                 Text="5. Create a Secret → paste below and click Connect" />
+
+      <!-- Client Secret -->
+      <TextBlock Text="OAuth2 Client Secret:"
+                 Margin="0,0,0,4" />
+      <TextBox MinHeight="26"
+               MinWidth="300"
+               Margin="0,0,0,4"
+               HorizontalContentAlignment="Left"
+               VerticalContentAlignment="Center"
+               Text="{Binding ClientSecret, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               Style="{StaticResource {x:Static styles:VsResourceKeys.TextBoxStyleKey}}" />
+      <TextBlock Text="The secret will be stored securely in Windows Credential Manager."
+                 FontSize="11"
+                 Opacity="0.6"
+                 Margin="0,0,0,12" />
+
+      <!-- Przyciski -->
+      <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+        <Button x:Name="ConnectButton"
+                Content="Connect to Jira"
+                IsEnabled="False"
+                MinHeight="25"
+                MinWidth="120"
+                Margin="0,0,8,0"
+                Style="{StaticResource {x:Static styles:VsResourceKeys.ButtonStyleKey}}"
+                Command="{Binding ConnectCommand}" />
+
+        <Button x:Name="DisconnectButton"
+                Content="Disconnect"
+                IsEnabled="False"
+                MinHeight="25"
+                MinWidth="100"
+                Style="{StaticResource {x:Static styles:VsResourceKeys.ButtonStyleKey}}"
+                Command="{Binding DisconnectCommand}" />
+      </StackPanel>
+
+      <!-- Status -->
+      <TextBlock Text="{Binding StatusMessage}"
+                 TextWrapping="Wrap"
+                 Margin="0,4,0,0" />
+
+    </StackPanel>
+  </Border>
+
+  <DataTemplate.Triggers>
+    <!-- Connect button enabled when not connecting -->
+    <DataTrigger Binding="{Binding IsConnecting}" Value="False">
+      <Setter TargetName="ConnectButton" Property="IsEnabled" Value="True" />
+    </DataTrigger>
+    <!-- Disconnect button enabled when connected -->
+    <DataTrigger Binding="{Binding IsConnected}" Value="True">
+      <Setter TargetName="DisconnectButton" Property="IsEnabled" Value="True" />
+    </DataTrigger>
+  </DataTemplate.Triggers>
+</DataTemplate>
